@@ -4,6 +4,10 @@ const Module = require('../lib/Module');
 
 const modulePack = new Module();
 
-modulePack.add('example/sample-lib.js');
+modulePack.add([
+  {path: 'example/modules/sample-lib.js'},
+  {path: 'example'},
+  {path: '/example'},
+]);
 
 console.log(require('util').inspect(modulePack, { depth: null }));
