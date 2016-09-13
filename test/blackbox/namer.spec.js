@@ -1,5 +1,6 @@
 const path = require('path');
 const assert = require('chai').assert;
+const expect = require('chai').expect;
 const chalk = require('chalk');
 const namer = require(
   path.join(
@@ -44,26 +45,19 @@ describe(chalk.magenta('Blackbox: namer'), () => {
     );
   });
 
-  it.skip('Should treat null cases', (done) => {
+  it('Should treat null cases', (done) => {
     const filePath = null;
 
-    const solvedName = namer.solve(filePath);
+    expect( () => namer.solve(filePath) ).to.throw('null is an invalid file.');
+
     done();
   });
 
-  it.skip('Should treat undefined cases', (done) => {
+  it('Should treat undefined cases', (done) => {
     const filePath = undefined;
 
-    const solvedName = namer.solve(filePath);
+    expect( () => namer.solve(filePath) ).to.throw('undefined is an invalid file.');
     done();
-  });
-
-  it.skip('Should treat cases where path is not valid', (done) => {
-    const filePath = 'Something unexpected';
-
-    const solvedName = namer.solve(filePath);
-    done(Error('This should be breaking'));
-
   });
 
 });
